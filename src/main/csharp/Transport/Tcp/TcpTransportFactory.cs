@@ -252,7 +252,8 @@ namespace Apache.NMS.ActiveMQ.Transport.Tcp
 							DoBind(socket, localAddress, localPort);
 						}
 
-						IAsyncResult result = socket.BeginConnect(new IPEndPoint(address, port), null, null);
+                        //TODO: mojinxun maybe not connect => throw exception: System.IO.IOException: The operation is not allowed on non-connected sockets.
+                        IAsyncResult result = socket.BeginConnect(new IPEndPoint(address, port), null, null);
 						result.AsyncWaitHandle.WaitOne(ConnectTimeout, true);
 						if(!socket.Connected)
 						{
